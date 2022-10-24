@@ -5,19 +5,19 @@ interface IFieldProps {
     placeholder: string
 }
 
-const textFieldClassName = 'h-[40px] w-full rounded-[20px] p-3 m-1'
+const textFieldClassName = 'h-[40px] w-full rounded-[20px] p-3 mb-1'
 
 export function TextField({register, placeholder} : IFieldProps) {
     return (
-        <input {...register} 
-            placeholder={placeholder} type={'text'} className={textFieldClassName}>
+        <input {...register} id={register.name}
+            placeholder={placeholder} className={textFieldClassName}>
         </input>
     )
 }
 
 export function PasswordField({register, placeholder} : IFieldProps) {
     return (
-        <input {...register}
+        <input {...register} id={register.name}
             placeholder={placeholder} type={'password'} className={textFieldClassName}>
         </input>
     )
