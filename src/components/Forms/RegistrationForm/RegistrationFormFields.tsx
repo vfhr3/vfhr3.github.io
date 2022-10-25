@@ -5,7 +5,7 @@ interface IFieldProps {
     placeholder: string
 }
 
-const textFieldClassName = 'h-[40px] w-full rounded-[20px] p-3 mb-1'
+const textFieldClassName = 'h-[40px] w-full rounded-[20px] p-3'
 
 export function TextField({register, placeholder} : IFieldProps) {
     return (

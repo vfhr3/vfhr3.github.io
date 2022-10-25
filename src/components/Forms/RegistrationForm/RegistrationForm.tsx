@@ -14,7 +14,8 @@ export function RegistrationForm() {
         username: '',
         email: '',
         password: '',
-        confirm_password: ''
+        confirm_password: '',
+        terms: false
       }
     }
   );
@@ -36,9 +37,9 @@ export function RegistrationForm() {
   }
 
   return (
-    <form className={'flex flex-col'} onSubmit={handleSubmit((data) => console.log(data))}>
-      <div>
-        <label htmlFor='username' className='mx-2 font-semibold'>Username</label>
+    <form className={'flex flex-col gap-2'} onSubmit={handleSubmit(() => sendRegistrationRequest(data))}>
+      <div className='flex gap-1 flex-col'>
+        {errors.username && <p className={'text-red-600 mx-2'}>{errors.username.message}</p>}
         <TextField register={
           register(
             'username', {
@@ -55,11 +56,8 @@ export function RegistrationForm() {
           )
         }
           placeholder='Enter Username' />
-        {errors.username && <p className={'text-red-600 mx-2'}>{errors.username.message}</p>}
-      </div>
 
-      <div>
-        <label htmlFor='email' className='mx-2 font-semibold'>Email</label>
+        {errors.email && <p className={'text-red-600 mx-2'}>{errors.email.message}</p>}
         <TextField register={
           register(
             'email', {
@@ -72,11 +70,8 @@ export function RegistrationForm() {
           )
         }
           placeholder='Enter Email' />
-        {errors.email && <p className={'text-red-600 mx-2'}>{errors.email.message}</p>}
-      </div>
 
-      <div>
-        <label htmlFor='password' className='mx-2 font-semibold'>Password</label>
+        {errors.password && <p className={'text-red-600 mx-2'}>{errors.password.message}</p>}
         <PasswordField register={
           register(
             'password', {
@@ -93,11 +88,8 @@ export function RegistrationForm() {
           )
         }
           placeholder='Enter Password' />
-        {errors.password && <p className={'text-red-600 mx-2'}>{errors.password.message}</p>}
-      </div>
 
-      <div>
-        <label htmlFor='confirm_password' className='mx-2 font-semibold'>Confirm Password</label>
+        {errors.confirm_password && <p className={'text-red-600 mx-2'}>{errors.confirm_password.message}</p>}
         <PasswordField register={
           register(
             'confirm_password', {
@@ -107,7 +99,11 @@ export function RegistrationForm() {
           )
         }
           placeholder='Confirm Password' />
-        {errors.confirm_password && <p className={'text-red-600 mx-2'}>{errors.confirm_password.message}</p>}
+      </div>
+
+      <div className='flex flex-row items-center justify-center'>
+        <input {...register('terms', { required: true, validate: value => value })} className='transition-all mr-1' type={'checkbox'} id='terms'></input>
+        <label htmlFor='terms'>I agree to the <a className={'text-blue-800 hover:underline transition-all'} href='https://ya.ru'>Terms of Service and Privacy Policy</a></label>
       </div>
 
       <RegistrationButton />
