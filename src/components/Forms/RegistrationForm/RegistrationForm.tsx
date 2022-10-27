@@ -1,14 +1,14 @@
-import { useState } from 'react';
+
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { emailRegex } from '../../../utils/regex';
 import { MAX_PASSWORD_LENGTH, MIN_LOGIN_LENGTH, MIN_PASSWORD_LENGTH, MAX_LOGIN_LENGTH } from '../../../utils/constants';
 import { TextField, PasswordField, RegistrationButton } from './RegistrationFormFields';
+import { IRegistrationRequestData } from './models/RegistrationRequestData';
 
+export default function RegistrationForm() {
 
-export function RegistrationForm() {
-
-  const { register, handleSubmit, watch, formState: { errors }, setError } = useForm(
+  const { register, handleSubmit, watch, formState: { errors } } = useForm(
     {
       defaultValues: {
         username: '',
@@ -20,7 +20,7 @@ export function RegistrationForm() {
     }
   );
 
-  async function sendRegistrationRequest(data: object) {
+  async function sendRegistrationRequest(data: IRegistrationRequestData) {
     const response = await axios({
       method: 'post',
       url: 'http://localhost:8080/api/registration',
@@ -30,7 +30,7 @@ export function RegistrationForm() {
     console.log(response)
   }
 
-  const data = {
+  const data : IRegistrationRequestData = {
     username: watch('username'),
     email: watch('email'),
     password: watch('password')
@@ -94,7 +94,7 @@ export function RegistrationForm() {
           register(
             'confirm_password', {
             required: 'Please, confirm your password',
-            validate: (value) => data.password == value ? true : "Passwords doesn't match"
+            validate: (value) => data.password === value ? true : "Passwords doesn't match"
           }
           )
         }

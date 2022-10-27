@@ -1,10 +1,9 @@
-import { anyRegex, emailRegex } from '../../../utils/regex';
 import { LoginField, PasswordField, RememberMeField } from './LoginFormFields';
 import { useForm } from 'react-hook-form'
 import { MAX_LOGIN_LENGTH, MAX_PASSWORD_LENGTH, MIN_LOGIN_LENGTH, MIN_PASSWORD_LENGTH } from '../../../utils/constants'
 
 
-export function LoginForm() {
+export default function LoginForm() {
 
     const { register, handleSubmit } = useForm();
 
