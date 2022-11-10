@@ -1,4 +1,4 @@
-
+import './styles.css'
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { emailRegex } from '../../../utils/regex';
@@ -37,9 +37,10 @@ export default function RegistrationForm() {
   }
 
   return (
-    <form className={'flex flex-col gap-2'} onSubmit={handleSubmit(() => sendRegistrationRequest(data))}>
-      <div className='flex gap-1 flex-col'>
-        {errors.username && <p className={'text-red-600 mx-2'}>{errors.username.message}</p>}
+    <form className={'form'} onSubmit={handleSubmit(() => sendRegistrationRequest(data))}>
+
+      <div className='text-inputs'>
+        {errors.username && <p className={'error'}>{errors.username.message}</p>}
         <TextField register={
           register(
             'username', {
@@ -57,7 +58,7 @@ export default function RegistrationForm() {
         }
           placeholder='Enter Username' />
 
-        {errors.email && <p className={'text-red-600 mx-2'}>{errors.email.message}</p>}
+        {errors.email && <p className={'error'}>{errors.email.message}</p>}
         <TextField register={
           register(
             'email', {
@@ -71,7 +72,7 @@ export default function RegistrationForm() {
         }
           placeholder='Enter Email' />
 
-        {errors.password && <p className={'text-red-600 mx-2'}>{errors.password.message}</p>}
+        {errors.password && <p className={'error'}>{errors.password.message}</p>}
         <PasswordField register={
           register(
             'password', {
@@ -89,7 +90,7 @@ export default function RegistrationForm() {
         }
           placeholder='Enter Password' />
 
-        {errors.confirm_password && <p className={'text-red-600 mx-2'}>{errors.confirm_password.message}</p>}
+        {errors.confirm_password && <p className={'error'}>{errors.confirm_password.message}</p>}
         <PasswordField register={
           register(
             'confirm_password', {
@@ -101,12 +102,13 @@ export default function RegistrationForm() {
           placeholder='Confirm Password' />
       </div>
 
-      <div className='flex flex-row items-center justify-center'>
-        <input {...register('terms', { required: true, validate: value => value })} className='transition-all mr-1' type={'checkbox'} id='terms'></input>
-        <label htmlFor='terms'>I agree to the <a className={'text-blue-800 hover:underline transition-all'} href='https://ya.ru'>Terms of Service and Privacy Policy</a></label>
+      <div className='policy-block'>
+        <input {...register('terms', { required: true, validate: value => value })} type={'checkbox'} id='terms'></input>
+        <label htmlFor='terms'>I agree to the <a href='https://ya.ru'>Terms of Service and Privacy Policy</a></label>
       </div>
 
       <RegistrationButton />
+      
     </form>
   )
 }

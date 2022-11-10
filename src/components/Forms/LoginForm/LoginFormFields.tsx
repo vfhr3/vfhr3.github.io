@@ -1,6 +1,5 @@
 import { UseFormRegisterReturn } from 'react-hook-form/dist/types'
-
-const textFieldClassName = 'h-[40px] w-full rounded-[20px] p-3 m-1';
+import './styles.css'
 
 interface IFieldProps {
     register: UseFormRegisterReturn<any>
@@ -9,7 +8,7 @@ interface IFieldProps {
 export function LoginField({ register }: IFieldProps) {
     return (
         <input {...register}
-            placeholder='Enter Login / Email' type={'text'} className={textFieldClassName}>
+            placeholder='Enter Login / Email' type={'text'} className='input-field'>
         </input>
     )
 }
@@ -17,7 +16,7 @@ export function LoginField({ register }: IFieldProps) {
 export function PasswordField({ register }: IFieldProps) {
     return (
         <input {...register}
-            placeholder='Enter Password' type={'password'} className={textFieldClassName}>
+            placeholder='Enter Password' type={'password'} className='input-field'>
         </input>
     )
 }

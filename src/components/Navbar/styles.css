@@ -1,0 +1,8 @@
+@tailwind components;
+
+@layer components {
+
+    .navbar {
+        @apply fixed flex w-full items-center justify-center z-50 bg-[#FFFFFF22] h-12
+    }
+}

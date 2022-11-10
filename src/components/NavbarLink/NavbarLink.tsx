@@ -1,3 +1,5 @@
+import './styles.css'
+
 
 interface INavbarLink {
     href: string,
@@ -7,7 +9,7 @@ interface INavbarLink {
 
 export default function NavbarLink({href, className, title} : INavbarLink) {
     return (
-        <li className="p-10 opacity-100">
+        <li className="list">
             <a className={ className } href={ href }>
                 { title }
             </a>

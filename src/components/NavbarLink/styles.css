@@ -1,0 +1,7 @@
+@tailwind components;
+
+@layer components {
+    .list {
+        @apply p-10 opacity-100
+    }  
+}
